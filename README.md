@@ -1,4 +1,5 @@
 # kontent-boats-vue
+[![Netlify Status](https://api.netlify.com/api/v1/badges/92c399e9-03d3-4e93-aa6e-b1a121c734b9/deploy-status)](https://app.netlify.com/sites/kontent-boats-vue/deploys)
 
 ## Project setup
 ```
