@@ -23,6 +23,11 @@ export default {
             return this.$store.dispatch(Types.actions.LOAD_CLASSES_BY_CLASSIFICATION, this.classification.codename);
         }
     },
+    created() {
+        if (this.classification) {
+            return this.$store.dispatch(Types.actions.LOAD_CLASSES_BY_CLASSIFICATION, this.classification.codename);
+        }
+    },
     components: {
         CollectionView
     }
