@@ -4,13 +4,13 @@
             <h1>{{name}}</h1>
         </header>
         <section class="dinghy-class-card-container">
-            <dinghy-class v-for="dinghyClass in dinghyClasses" :key="dinghyClass.system.id" :data="dinghyClass"></dinghy-class>
+            <dinghy-class-card v-for="dinghyClass in dinghyClasses" :key="dinghyClass.system.id" :data="dinghyClass"></dinghy-class-card>
         </section>
     </main>
 </template>
 
 <script>
-import DinghyClass from '@/components/DinghyClass';
+import DinghyClassCard from '@/components/DinghyClassCard';
 
 export default {
     name: 'collection-view',
@@ -19,7 +19,7 @@ export default {
         dinghyClasses: Array
     },
     components: {
-        DinghyClass
+        DinghyClassCard
     }
 };
 </script>

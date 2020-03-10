@@ -11,7 +11,7 @@
 <script>
 import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
 export default {
-    name: 'dinghy-class',
+    name: 'dinghy-class-card',
     props: {
         data: Object
     },
