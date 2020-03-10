@@ -15,7 +15,6 @@ export default {
     components: {
     },
     created() {
-        console.log('hi');
         this.$store.dispatch(Types.actions.LOAD_CLASSES);
     }
 };
