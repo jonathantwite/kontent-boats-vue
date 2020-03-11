@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Classification from '@/views/Classification';
+import DinghyClass from '@/views/DinghyClass';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
         path: '/classification/:classificationName',
         name: 'Classification',
         component: Classification
+    },
+    {
+        path: '/class/:classCodename',
+        name: 'DinghyClass',
+        component: DinghyClass
     },
     {
         path: '/about',
