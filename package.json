@@ -12,6 +12,7 @@
   "dependencies": {
     "@kentico/kontent-delivery": "^9.0.0",
     "core-js": "^3.6.4",
+    "portal-vue": "^2.1.7",
     "register-service-worker": "^1.6.2",
     "rxjs": "^6.5.4",
     "vue": "^2.6.11",

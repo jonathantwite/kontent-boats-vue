@@ -1,5 +1,7 @@
 <template>
     <div id="app">
+        <portal-target name="page-header">
+        </portal-target>
         <div class="layout">
             <div class="lh-menu">
                 <category-menu></category-menu>
@@ -14,6 +16,8 @@
 
 <script>
 import CategoryMenu from '@/components/layout/CategoryMenu';
+
+import '@/scss/global.scss';
 
 export default {
     components: {

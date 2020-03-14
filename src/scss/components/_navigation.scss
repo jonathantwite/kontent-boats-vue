@@ -1,0 +1,9 @@
+nav > ul,
+nav > ul > li {
+    margin: 0;
+    list-style: none;
+}
+nav > ul > li {
+    padding: $clickable-padding;
+    @include hover-background(#fff);
+}
