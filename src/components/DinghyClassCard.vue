@@ -4,7 +4,8 @@
         <p>PY: {{data.py_number.value}}</p>
         <img :src="imageUrl" class="dinghy-image" />
         <p>{{data.design_type.value[0].name}}</p>
-        <a target="_blank" :href="data.association_website">Website</a>
+        <router-link :to="{name: 'DinghyClass', params: {codename: data.system.codename}}" class="btn">{{data.class_name.value}}</router-link>
+        <a target="_blank" :href="data.association_website.value">{{data.association_name.value}}</a>
     </div>
 </template>
 
@@ -39,6 +40,10 @@ export default {
     overflow: hidden;
 
     margin-left: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .dinghy-image {
     width: 300px;

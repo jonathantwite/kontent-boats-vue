@@ -4,7 +4,7 @@
             <h1>{{name}}</h1>
         </header>
         <section class="dinghy-class-card-container">
-            <dinghy-class-card v-for="dinghyClass in dinghyClasses" :key="dinghyClass.system.id" :data="dinghyClass"></dinghy-class-card>
+            <dinghy-class-card v-for="dinghyClass in dinghyClasses" :key="dinghyClass.system.codename" :data="dinghyClass"></dinghy-class-card>
         </section>
     </main>
 </template>

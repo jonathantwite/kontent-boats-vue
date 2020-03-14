@@ -10,7 +10,7 @@ import CollectionView from '@/components/layout/CollectionView';
 import { Types } from '@/store';
 export default {
     computed: {
-        classification() { return this.$store.getters.GET_CLASSIFICATION_BY_NAME(this.$route.params.classificationName); },
+        classification() { return this.$store.getters.GET_CLASSIFICATION(this.$route.params.codename); },
         dinghyClasses() { return this.$store.getters.GET_CLASSES_IN_CLASSIFICATION(this.classificationCodename); },
         classificationName() { return this.classification !== undefined ? this.classification.name : ''; },
         classificationCodename() { return this.classification !== undefined ? this.classification.codename : ''; }

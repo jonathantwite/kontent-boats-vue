@@ -3,7 +3,7 @@ import { getClassifications } from '@/dto/data';
 export const Types = {
     getters: {
         GET_ALL_CLASSIFICATIONS: 'GET_ALL_CLASSIFICATIONS',
-        GET_CLASSIFICATION_BY_NAME: 'GET_CLASSIFICATION_BY_NAME'
+        GET_CLASSIFICATION: 'GET_CLASSIFICATION'
     },
     mutations: {
         ADD_CLASSIFICATION: 'ADD_CLASSIFICATION',
@@ -20,8 +20,8 @@ const state = {
 
 const getters = {
     GET_ALL_CLASSIFICATIONS: state => state.allClassifications,
-    GET_CLASSIFICATION_BY_NAME: state => name => {
-        return state.allClassifications.find(s => s.name === name);
+    GET_CLASSIFICATION: state => codename => {
+        return state.allClassifications.find(s => s.codename === codename);
     }
 };
 

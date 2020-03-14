@@ -1,8 +1,25 @@
 <template>
     <main>
-        <header class="hero-image" :style="{ backgroundImage: 'url(' + imageUrl + ')' }">
-            <h1>{{data?data.class_name.value:''}}</h1>
-        </header>
+        <portal to="page-header">
+            <header class="hero-image" :style="{ backgroundImage: 'url(' + imageUrl + ')' }">
+                <h1>{{data?data.class_name.value:''}}</h1>
+            </header>
+        </portal>
+        <article>
+            <div>
+                <p>
+                    <span v-for="classification in data.classification.value" :key="classification.codename">
+                        {{classification.name}}
+                    </span>
+                    {{data.design_type.value[0].name}} with PY: {{data.py_number.value}}
+                </p>
+                <span v-html="data.information.value"></span>
+            </div>
+            <div>
+                <h3>Builders</h3>
+                <p v-for="builder in data.builders.value" :key="builder.system.codename">{{builder.builder_name.value}} ({{builder.location.value}})</p>
+            </div>
+        </article>
     </main>
 </template>
 
@@ -11,7 +28,7 @@ import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery
 import { Types } from '@/store';
 export default {
     computed: {
-        data() { return this.$store.getters.GET_CLASS(this.$route.params.classCodename); },
+        data() { return this.$store.getters.GET_CLASS(this.$route.params.codename); },
         imageUrl: function() {
             if (this.data) {
                 const imageUrlBuilder = new ImageUrlBuilder(this.data.image.value[0].url)
@@ -28,7 +45,7 @@ export default {
         }
     },
     created() {
-        this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.classCodename);
+        this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.codename);
     }
 };
 </script>

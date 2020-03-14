@@ -2,7 +2,7 @@
     <nav class="classification-menu">
         <ul>
             <li v-for="cat in allClassifications" :key="cat.id">
-               <router-link :to="{name: 'Classification', params: {classificationName: cat.name}}">{{cat.name}}</router-link>
+               <router-link :to="{name: 'Classification', params: {codename: cat.codename}}">{{cat.name}}</router-link>
             </li>
         </ul>
     </nav>
@@ -22,9 +22,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.classification-menu {
-    ul {
-        list-style: none;
-    }
-}
+
 </style>

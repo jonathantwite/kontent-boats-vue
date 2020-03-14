@@ -41,7 +41,7 @@ const mutations = {
         state.allClasses = state.allClasses.filter(c => classesToRemove.indexOf(c._raw.system.id) === -1);
     },
     CLEAR_CLASSES_BY_CODENAME: (state, { codename }) => {
-        state.allClasses = state.allClasses.filter(c => c._raw.system.codename === codename);
+        state.allClasses = state.allClasses.filter(c => c.system.codename === codename);
     },
     ADD_CLASS: (state, boatClass) => { state.allClasses.push(boatClass); }
 };
