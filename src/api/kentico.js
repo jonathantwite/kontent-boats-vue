@@ -10,7 +10,7 @@ export const getClassesByClassification = (codename) =>
         .equalsFilter('elements.classification[contains]', codename)
         .toPromise();
 
-export const getClass = (codename) =>
+export const getItem = (codename) =>
     deliveryClient.item(codename)
         .toPromise();
 

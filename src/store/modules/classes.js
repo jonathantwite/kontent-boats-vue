@@ -1,4 +1,4 @@
-import { getClassesByClassification, getClass, getClassesByBuilder } from '@/api/kentico';
+import { getClassesByClassification, getItem, getClassesByBuilder } from '@/api/kentico';
 
 export const Types = {
     getters: {
@@ -22,7 +22,7 @@ const state = {
 };
 
 const getters = {
-    GET_CLASS: state => codename => state.allClasses.find(c => c._raw.system.codename === codename),
+    GET_CLASS: state => codename => state.allClasses.find(c => c.system.codename === codename),
     GET_ALL_CLASSES: state => state.allClasses,
     GET_CLASSES_IN_CLASSIFICATION: state => codename => state.allClasses.filter(c => c.classification.value.map(cv => cv.codename).indexOf(codename) !== -1),
     GET_CLASSES_BY_BUILDER: state => codename => state.allClasses.filter(c => c.builders.value.map(bv => bv.system.codename).indexOf(codename) !== -1)
@@ -44,15 +44,13 @@ const actions = {
         }),
     LOAD_CLASSES_BY_BUILDER: ({ commit }, codename) => getClassesByBuilder(codename)
         .then(all => {
-            all.items.forEach(c => {
-                commit(Types.mutations.CLEAR_CLASSES_BY_CODENAME, { codename: c.system.codename });
-                commit(Types.mutations.ADD_CLASS, c);
+            all.items.forEach(dinghyClass => {
+                commit(Types.mutations.ADD_OR_UPDATE_CLASS, { dinghyClass });
             });
         }),
-    LOAD_CLASS: ({ commit }, codename) => getClass(codename)
-        .then(dinghyClass => {
-            commit(Types.mutations.CLEAR_CLASSES_BY_CODENAME, { codename });
-            commit(Types.mutations.ADD_CLASS, dinghyClass.item);
+    LOAD_CLASS: ({ commit }, codename) => getItem(codename)
+        .then(response => {
+            commit(Types.mutations.ADD_OR_UPDATE_CLASS, { dinghyClass: response.item });
         })
 };
 
