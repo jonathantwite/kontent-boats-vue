@@ -5,5 +5,13 @@ nav > ul > li {
 }
 nav > ul > li {
     padding: $clickable-padding;
-    @include hover-background(#fff);
+
+    &:not(.list-title){
+        //@include hover-background(#fff);
+        @include hover-background($color-highlight-bg);
+    }
+
+    &.list-title{
+        background-color: $color-highlight-main;
+    }
 }

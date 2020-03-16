@@ -5,16 +5,16 @@
         </portal>
         <article v-if="data">
             <h2>{{data.class_name.value}}</h2>
+            <builders-box :builders="data.builders.value"></builders-box>
             <div>
-                <p>
+                <p class="lead">
                     <span v-for="classification in data.classification.value" :key="classification.codename">
                         {{classification.name}}
                     </span>
                     {{data.design_type.value[0].name}} with PY: {{data.py_number.value}}
                 </p>
-                <span v-html="data.information.value"></span>
+                <p><span v-html="data.information.value"></span></p>
             </div>
-            <builders-box :builders="data.builders.value"></builders-box>
         </article>
     </main>
 </template>

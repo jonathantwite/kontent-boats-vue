@@ -1,3 +1,6 @@
 $color-darken: 10;
-$clickable-padding: 15px 20px;
-$content-padding: 25px 30px;
+$clickable-padding: 1.25em;
+$content-padding: 4*1.25em 5em; //25px 30px;
+
+$color-highlight-main: #adf;
+$color-highlight-bg: lighten($color-highlight-main, $color-darken);

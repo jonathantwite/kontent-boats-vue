@@ -30,6 +30,7 @@
 * Router
 * Vuex
 * Tests
+* Styling
 
 ## Footer
 

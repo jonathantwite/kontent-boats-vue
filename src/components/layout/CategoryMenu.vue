@@ -1,6 +1,7 @@
 <template>
     <nav class="classification-menu">
         <ul>
+            <li class="list-title"><h3>View Category</h3></li>
             <li v-for="cat in allClassifications" :key="cat.id">
                <router-link :to="{name: 'Classification', params: {codename: cat.codename}}">{{cat.name}}</router-link>
             </li>
