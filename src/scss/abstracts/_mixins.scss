@@ -1,0 +1,6 @@
+@mixin hover-background($base-color){
+    background-color: $base-color;
+    &:hover{
+        background-color: darken($color: $base-color, $amount: $color-darken);
+    }
+}

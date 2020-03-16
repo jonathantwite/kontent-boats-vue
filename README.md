@@ -33,3 +33,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Kontent Delivery Docs
+
+[API docs](https://docs.kontent.ai/tutorials/develop-apps/get-started/getting-development-resources)
+[JS SDK docs](https://github.com/Kentico/kontent-delivery-sdk-js/blob/master/DOCS.md)

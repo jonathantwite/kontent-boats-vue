@@ -1,0 +1,17 @@
+nav > ul,
+nav > ul > li {
+    margin: 0;
+    list-style: none;
+}
+nav > ul > li {
+    padding: $clickable-padding;
+
+    &:not(.list-title){
+        //@include hover-background(#fff);
+        @include hover-background($color-highlight-bg);
+    }
+
+    &.list-title{
+        background-color: $color-highlight-main;
+    }
+}
