@@ -1,12 +1,10 @@
 <template>
-    <main>
-        <header>
-            <h1>{{name}}</h1>
-        </header>
+    <div class="collection-view">
+        <h2>{{name}}</h2>
         <section class="dinghy-class-card-container">
             <dinghy-class-card v-for="dinghyClass in dinghyClasses" :key="dinghyClass.system.codename" :data="dinghyClass"></dinghy-class-card>
         </section>
-    </main>
+    </div>
 </template>
 
 <script>

@@ -1,11 +1,10 @@
 <template>
     <main>
         <portal to="page-header">
-            <header class="hero-image" :style="{ backgroundImage: 'url(' + imageUrl + ')' }">
-                <h1>{{data?data.class_name.value:''}}</h1>
-            </header>
+            <hero-header :imageUrl="imageUrl" :title="data?data.class_name.value:''"></hero-header>
         </portal>
-        <article>
+        <article v-if="data">
+            <h2>{{data.class_name.value}}</h2>
             <div>
                 <p>
                     <span v-for="classification in data.classification.value" :key="classification.codename">
@@ -15,10 +14,7 @@
                 </p>
                 <span v-html="data.information.value"></span>
             </div>
-            <div>
-                <h3>Builders</h3>
-                <p v-for="builder in data.builders.value" :key="builder.system.codename">{{builder.builder_name.value}} ({{builder.location.value}})</p>
-            </div>
+            <builders-box :builders="data.builders.value"></builders-box>
         </article>
     </main>
 </template>
@@ -26,6 +22,9 @@
 <script>
 import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
 import { Types } from '@/store';
+import HeroHeader from '@/components/layout/HeroHeader';
+import BuildersBox from '@/components/BuildersBox';
+
 export default {
     computed: {
         data() { return this.$store.getters.GET_CLASS(this.$route.params.codename); },
@@ -46,24 +45,14 @@ export default {
     },
     created() {
         this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.codename);
+    },
+    components: {
+        HeroHeader,
+        BuildersBox
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.hero-image{
-    height: 600px;
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-}
 
-h1{
-    margin-left: 100px;
-    color: #fff;
-    font-size: 100px;
-    text-shadow: 2px 2px 2px #444;
-}
 </style>
