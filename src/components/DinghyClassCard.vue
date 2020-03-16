@@ -5,7 +5,7 @@
         <img :src="imageUrl" class="dinghy-image" />
         <p>{{data.design_type.value[0].name}}</p>
         <router-link :to="{name: 'DinghyClass', params: {codename: data.system.codename}}" class="btn">{{data.class_name.value}}</router-link>
-        <a target="_blank" :href="data.association_website.value">{{data.association_name.value}}</a>
+        <a target="_blank" :href="data.association_website.value" class="association-link">{{data.association_name.value}}</a>
     </div>
 </template>
 
@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/abstracts/_variables.scss';
+
 .dinghy-class-card {
     border: 1px solid #777;
     width: 300px;
@@ -44,6 +46,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding: $clickable-padding 0;
+}
+.association-link{
+    padding-top: $clickable-padding;
 }
 .dinghy-image {
     width: 300px;
