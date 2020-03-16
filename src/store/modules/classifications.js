@@ -1,4 +1,4 @@
-import { getClassifications } from '@/dto/data';
+import { getClassifications } from '@/api/kentico';
 
 export const Types = {
     getters: {

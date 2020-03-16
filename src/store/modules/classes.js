@@ -1,4 +1,4 @@
-import { getClassesByClassification, getClass, getClassesByBuilder } from '@/dto/data';
+import { getClassesByClassification, getClass, getClassesByBuilder } from '@/api/kentico';
 
 export const Types = {
     getters: {
@@ -8,9 +8,7 @@ export const Types = {
         GET_CLASSES_BY_BUILDER: 'GET_CLASSES_BY_BUILDER'
     },
     mutations: {
-        CLEAR_CLASSES_BY_CLASSIFICATION: 'CLEAR_CLASSES_BY_CLASSIFICATION',
-        ADD_CLASS: 'ADD_CLASS',
-        CLEAR_CLASSES_BY_CODENAME: 'CLEAR_CLASSES_BY_CODENAME'
+        ADD_OR_UPDATE_CLASS: 'ADD_OR_UPDATE_CLASS'
     },
     actions: {
         LOAD_CLASSES_BY_CLASSIFICATION: 'LOAD_CLASSES_BY_CLASSIFICATION',
@@ -31,34 +29,18 @@ const getters = {
 };
 
 const mutations = {
-    CLEAR_CLASSES_BY_CLASSIFICATION: (state, { codename }) => {
-        const classesToRemove = [];
-        state.allClasses.forEach(c => {
-            c.classification.value.forEach(classification => {
-                if (classification.codename === codename) {
-                    classesToRemove.push(c._raw.system.id);
-                }
-            });
-        });
-
-        state.allClasses = state.allClasses.filter(c => classesToRemove.indexOf(c._raw.system.id) === -1);
-    },
-    CLEAR_CLASSES_BY_CODENAME: (state, { codename }) => {
-        state.allClasses = state.allClasses.filter(c => c.system.codename !== codename);
-    },
-    ADD_CLASS: (state, boatClass) => { state.allClasses.push(boatClass); }
+    ADD_OR_UPDATE_CLASS: (state, { dinghyClass }) => {
+        state.allClasses = state.allClasses.filter(c => c.system.codename !== dinghyClass.system.codename);
+        state.allClasses.push(dinghyClass);
+    }
 };
 
 const actions = {
     LOAD_CLASSES_BY_CLASSIFICATION: ({ commit }, codename) => getClassesByClassification(codename)
         .then(all => {
-            commit(Types.mutations.CLEAR_CLASSES_BY_CLASSIFICATION, { codename });
-            all.items.forEach(c => commit(Types.mutations.ADD_CLASS, c));
-        }),
-    LOAD_CLASS: ({ commit }, codename) => getClass(codename)
-        .then(dinghyClass => {
-            commit(Types.mutations.CLEAR_CLASSES_BY_CODENAME, { codename });
-            commit(Types.mutations.ADD_CLASS, dinghyClass.item);
+            all.items.forEach(dinghyClass => {
+                commit(Types.mutations.ADD_OR_UPDATE_CLASS, { dinghyClass });
+            });
         }),
     LOAD_CLASSES_BY_BUILDER: ({ commit }, codename) => getClassesByBuilder(codename)
         .then(all => {
@@ -66,6 +48,11 @@ const actions = {
                 commit(Types.mutations.CLEAR_CLASSES_BY_CODENAME, { codename: c.system.codename });
                 commit(Types.mutations.ADD_CLASS, c);
             });
+        }),
+    LOAD_CLASS: ({ commit }, codename) => getClass(codename)
+        .then(dinghyClass => {
+            commit(Types.mutations.CLEAR_CLASSES_BY_CODENAME, { codename });
+            commit(Types.mutations.ADD_CLASS, dinghyClass.item);
         })
 };
 
