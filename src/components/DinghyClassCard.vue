@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
+import { getImageUrl } from '@/Utilities/kentico';
+
 export default {
     name: 'dinghy-class-card',
     props: {
@@ -18,15 +19,7 @@ export default {
     },
     computed: {
         imageUrl: function() {
-            const imageUrlBuilder = new ImageUrlBuilder(this.data.image.value[0].url)
-                .withDpr(2)
-                .withCompression(ImageCompressionEnum.Lossless)
-                .withQuality(40)
-                .withHeight(150)
-                .withWidth(300);
-
-            // get url to image with query parameters
-            return imageUrlBuilder.getUrl();
+            return getImageUrl(this.data.image.value[0].url, 300, 150, 40);
         }
     }
 };

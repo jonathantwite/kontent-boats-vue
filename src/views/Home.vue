@@ -12,6 +12,7 @@
 <script>
 import { getItem } from '@/api/kentico';
 import HeroHeader from '@/components/layout/HeroHeader';
+import { getOGImageUrl } from '@/Utilities/kentico';
 
 export default {
     name: 'Home',
@@ -25,6 +26,16 @@ export default {
             .then(response => {
                 this.image = response.item.image.value[0];
             });
+    },
+    metaInfo() {
+        return {
+            title: 'Dinghy Classes',
+            meta: [
+                { vmid: 'description', name: 'description', content: 'The various dinghy classes that you may come across sailing in the UK' },
+                { vmid: 'og:title', name: 'og:title', content: 'Dinghy Classes' },
+                { vmid: 'og:image', name: 'og:image', content: getOGImageUrl(this.image.url) }
+            ]
+        };
     },
     components: {
         HeroHeader

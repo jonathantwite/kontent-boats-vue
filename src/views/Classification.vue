@@ -57,6 +57,11 @@ export default {
             return this.$store.dispatch(Types.actions.LOAD_CLASSES_BY_CLASSIFICATION, this.classification.codename);
         }
     },
+    metaInfo() {
+        return {
+            title: this.classificationName
+        };
+    },
     components: {
         CollectionView,
         HeroHeader

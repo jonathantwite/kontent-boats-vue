@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
+import { getImageUrl, getFullWidthImageUrl } from '@/Utilities/kentico';
 
 export default {
     name: 'hero-header',
@@ -14,29 +14,13 @@ export default {
     computed: {
         imageUrl: function() {
             if (this.image) {
-                const imageUrlBuilder = new ImageUrlBuilder(this.image.url)
-                    .withDpr(2)
-                    .withCompression(ImageCompressionEnum.Lossless)
-                    .withQuality(80)
-                    // .withHeight(150)
-                    .withWidth(1920);
-
-                // get url to image with query parameters
-                return imageUrlBuilder.getUrl();
+                return getFullWidthImageUrl(this.image.url);
             }
             return null;
         },
         floatingImageUrl: function() {
             if (this.floatingImage) {
-                const imageUrlBuilder = new ImageUrlBuilder(this.floatingImage.url)
-                    .withDpr(2)
-                    .withCompression(ImageCompressionEnum.Lossless)
-                    .withQuality(80)
-                    // .withHeight(150)
-                    .withWidth(200);
-
-                // get url to image with query parameters
-                return imageUrlBuilder.getUrl();
+                return getImageUrl(this.floatingImage.url, 200);
             }
             return null;
         },

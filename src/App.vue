@@ -20,6 +20,24 @@ import CategoryMenu from '@/components/layout/CategoryMenu';
 import '@/scss/global.scss';
 
 export default {
+    name: 'App',
+    metaInfo() {
+        return {
+            title: 'Dinghy Classes',
+            titleTemplate: 'Dinghies | %s',
+            meta: [
+                { charset: 'utf-8' },
+                { vmid: 'description', name: 'description', content: 'The various dinghy classes that you may come across sailing in the UK' },
+                { vmid: 'og:site_name', name: 'og:site_name', content: 'Dinghy Classes' },
+                { vmid: 'og:description', name: 'og:description', content: 'The various dinghy classes that you may come across sailing in the UK' },
+                { vmid: 'og:type', name: 'og:type', content: 'website' },
+                { vmid: 'og:url', name: 'og:url', content: process.env.VUE_APP_APP_URL + this.$route.path }
+            ],
+            link: [
+                { vmid: 'canonical', rel: 'canonical', href: process.env.VUE_APP_APP_URL + this.$route.path }
+            ]
+        };
+    },
     components: {
         CategoryMenu
     }

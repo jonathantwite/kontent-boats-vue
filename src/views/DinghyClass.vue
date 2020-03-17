@@ -23,6 +23,7 @@
 import { Types } from '@/store';
 import HeroHeader from '@/components/layout/HeroHeader';
 import BuildersBox from '@/components/BuildersBox';
+import { getOGImageUrl } from '@/Utilities/kentico';
 
 export default {
     computed: {
@@ -42,6 +43,16 @@ export default {
     },
     created() {
         this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.codename);
+    },
+    metaInfo() {
+        return {
+            title: this.data ? this.data.class_name.value : '',
+            meta: [
+                { vmid: 'description', name: 'description', content: this.data.information.value },
+                { vmid: 'og:title', name: 'og:title', content: this.data ? this.data.class_name.value : '' },
+                { vmid: 'og:image', name: 'og:image', content: getOGImageUrl(this.image.url) }
+            ]
+        };
     },
     components: {
         HeroHeader,

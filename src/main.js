@@ -3,10 +3,12 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import PortalVue from 'portal-vue';
+import Portal from 'portal-vue';
+import Meta from 'vue-meta';
 
 Vue.config.productionTip = false;
-Vue.use(PortalVue);
+Vue.use(Portal);
+Vue.use(Meta);
 
 new Vue({
     router,
