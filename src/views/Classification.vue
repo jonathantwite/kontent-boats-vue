@@ -1,7 +1,7 @@
 <template>
     <main>
         <portal to="page-header">
-            <hero-header :imageUrl="headerImageUrl" :title="classificationName"></hero-header>
+            <hero-header :image="headerImage" :title="classificationName"></hero-header>
         </portal>
         <article>
             <collection-view :name="classificationName" :dinghyClasses="dinghyClasses"></collection-view>
@@ -13,7 +13,6 @@
 // This component shows the dinghy classes currently in Vuex store for the selected classification
 // while despatching a request for the latest data from the Kontent API.
 // When this data is loaded, the component updates with the updated data.
-import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
 import CollectionView from '@/components/layout/CollectionView';
 import HeroHeader from '@/components/layout/HeroHeader';
 import { Types } from '@/store';
@@ -37,21 +36,12 @@ export default {
         dinghyClasses() { return this.$store.getters.GET_CLASSES_IN_CLASSIFICATION(this.classificationCodename); },
         classificationName() { return this.classification !== undefined ? this.classification.name : ''; },
         classificationCodename() { return this.classification !== undefined ? this.classification.codename : ''; },
-        headerImageUrl() {
+        headerImage() {
             if (!this.dinghyClasses || this.dinghyClasses.length === 0) {
                 return undefined;
             }
             const i = getRandomInt(0, this.dinghyClasses.length - 1);
-            const url = this.dinghyClasses[i].image.value[0].url;
-
-            const imageUrlBuilder = new ImageUrlBuilder(url)
-                .withDpr(2)
-                .withCompression(ImageCompressionEnum.Lossless)
-                .withQuality(80)
-                .withWidth(1920);
-
-            // get url to image with query parameters
-            return imageUrlBuilder.getUrl();
+            return this.dinghyClasses[i].image.value[0];
         }
     },
     watch: {

@@ -6,16 +6,48 @@
 </template>
 
 <script>
+import { ImageUrlBuilder, ImageCompressionEnum } from '@kentico/kontent-delivery';
+
 export default {
     name: 'hero-header',
-    props: ['imageUrl', 'title', 'floatingImageUrl'],
+    props: ['title', 'floatingImage', 'image'],
     computed: {
+        imageUrl: function() {
+            if (this.image) {
+                const imageUrlBuilder = new ImageUrlBuilder(this.image.url)
+                    .withDpr(2)
+                    .withCompression(ImageCompressionEnum.Lossless)
+                    .withQuality(80)
+                    // .withHeight(150)
+                    .withWidth(1920);
+
+                // get url to image with query parameters
+                return imageUrlBuilder.getUrl();
+            }
+            return null;
+        },
+        floatingImageUrl: function() {
+            if (this.floatingImage) {
+                const imageUrlBuilder = new ImageUrlBuilder(this.floatingImage.url)
+                    .withDpr(2)
+                    .withCompression(ImageCompressionEnum.Lossless)
+                    .withQuality(80)
+                    // .withHeight(150)
+                    .withWidth(200);
+
+                // get url to image with query parameters
+                return imageUrlBuilder.getUrl();
+            }
+            return null;
+        },
         hasFloatingImage: function() { return !!this.floatingImageUrl; }
     }
 };
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/abstracts/_variables.scss';
+
 .hero-image{
     height: 600px;
     background-position: bottom;
@@ -23,6 +55,7 @@ export default {
     background-size: cover;
     display: flex;
     align-items: center;
+    background-color: $color-highlight-bg;
 }
 
 h1{
