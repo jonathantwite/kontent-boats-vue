@@ -1,0 +1,26 @@
+@import '../abstracts/variables';
+
+/* Setup */
+.fade-left-enter-active, .fade-left-leave-active {
+    transition: all $animation-speed-page ease;
+}
+
+/* Enter - current position is left of screen */
+.fade-left-enter {
+    @extend .fade-enter;
+    transform: translateX(0);
+}
+.fade-left-enter-to {
+    @extend .fade-enter-to;
+    transform: translateX(-100%);
+}
+
+/* Leave */
+.fade-left-leave {
+    @extend .fade-leave;
+    transform: translateX(0);
+}
+.fade-left-leave-to {
+    @extend .fade-leave-to;
+    transform: translateX(-100%);
+}

@@ -37,9 +37,10 @@ export default {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     background-color: $color-highlight-bg;
+    width: 100%;
 }
 
 h1{

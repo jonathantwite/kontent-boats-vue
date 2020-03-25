@@ -1,20 +1,29 @@
 <template>
     <div id="app">
-        <portal-target name="page-header">
-        </portal-target>
+        <div class="header-area">
+            <transition name="fade-left">
+                <portal-target name="page-header" :key="$route.fullPath"></portal-target>
+            </transition>
+        </div>
+
         <div class="layout">
             <div class="lh-menu">
                 <category-menu></category-menu>
             </div>
 
             <div class="main">
-                <router-view/>
+                <transition name="fade">
+                    <div class="content" :key="$route.fullPath">
+                        <router-view />
+                    </div>
+                </transition>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+/* eslint vue/no-unused-components: 0 */
 import CategoryMenu from '@/components/layout/CategoryMenu';
 
 import '@/scss/global.scss';
@@ -45,6 +54,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-area{
+    white-space: nowrap;
+    overflow-x: hidden;
+    & > div {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.content {
+    position: absolute;
+}
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
