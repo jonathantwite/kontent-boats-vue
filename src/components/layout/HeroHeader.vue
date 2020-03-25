@@ -54,8 +54,7 @@ h1{
     top:0;
     right: 0;
     background-color: #fff;
-    padding: 5px;;
-    margin: 15px;
+    margin: $content-padding;
     width: 200px;
 }
 </style>

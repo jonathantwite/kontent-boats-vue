@@ -51,7 +51,7 @@ $border-color: #DADADA;
 // Make type normal across browsers
 *, html, body {
     font-size: $base-font-size;
-    font-family: $font-family;
+    //font-family: $font-family;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
@@ -246,7 +246,7 @@ code {
     position: relative;
     top: -0.2em;
     padding: 3px;
-    font-family: Courier New, Courier, monospace;
+    //font-family: Courier New, Courier, monospace;
     font-size: $paragraph-size / 1.2;
     color: darken($border-color, 70%);
     line-height: 1em;

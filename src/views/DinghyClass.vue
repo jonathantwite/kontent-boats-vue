@@ -27,7 +27,7 @@ import { getOGImageUrl } from '@/Utilities/kentico';
 
 export default {
     computed: {
-        data() { return this.$store.getters.GET_CLASS(this.$route.params.codename); },
+        data: function() { return this.$store.getters.GET_CLASS(this.$route.params.codename); },
         image: function() {
             if (this.data) {
                 return this.data.image.value[0];
@@ -39,18 +39,26 @@ export default {
                 return this.data.class_symbol.value[0];
             }
             return null;
+        },
+        __lang: function() {
+            return this.$store.getters.GET_SELECTED_LANGUAGE;
         }
     },
     created() {
         this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.codename);
     },
+    watch: {
+        __lang: function() {
+            this.$store.dispatch(Types.actions.LOAD_CLASS, this.$route.params.codename);
+        }
+    },
     metaInfo() {
         return {
             title: this.data ? this.data.class_name.value : '',
             meta: [
-                { vmid: 'description', name: 'description', content: this.data.information.value },
+                { vmid: 'description', name: 'description', content: this.data ? this.data.information.value : '' },
                 { vmid: 'og:title', name: 'og:title', content: this.data ? this.data.class_name.value : '' },
-                { vmid: 'og:image', name: 'og:image', content: getOGImageUrl(this.image.url) }
+                { vmid: 'og:image', name: 'og:image', content: this.image ? getOGImageUrl(this.image.url) : '' }
             ]
         };
     },

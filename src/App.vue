@@ -18,6 +18,13 @@
                     </div>
                 </transition>
             </div>
+
+            <div class="language-selector">
+                <label for="lang-selector">Select Language:&nbsp;</label>
+                <select name="lang-selector" id="lang-selector" v-model="selectedLanguage">
+                    <option v-for="lang in availableLanguages" :value="lang.codename" :key="lang.codename">{{lang.name}}</option>
+                </select>
+            </div>
         </div>
     </div>
 </template>
@@ -30,6 +37,17 @@ import '@/scss/global.scss';
 
 export default {
     name: 'App',
+    computed: {
+        selectedLanguage: {
+            get() {
+                return this.$store.getters.GET_SELECTED_LANGUAGE;
+            },
+            set(value) {
+                this.$store.commit('SET_SELECTED_LANGUAGE', { language: value });
+            }
+        },
+        availableLanguages: function() { return this.$store.getters.GET_AVAILABLE_LANGUAGES; }
+    },
     metaInfo() {
         return {
             title: 'Dinghy Classes',
@@ -54,6 +72,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/abstracts/_variables.scss';
+
 .header-area{
     white-space: nowrap;
     overflow-x: hidden;
@@ -67,12 +87,10 @@ export default {
     position: absolute;
 }
 
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+.language-selector{
+    position: absolute;
+    right: $content-padding;
+    padding-top: $content-padding;
 }
 
 .layout {

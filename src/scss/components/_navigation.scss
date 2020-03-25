@@ -2,6 +2,8 @@ nav > ul,
 nav > ul > li {
     margin: 0;
     list-style: none;
+    text-align: center;
+    font-size: 1.125em;
 }
 nav > ul > li {
     padding: $clickable-padding;

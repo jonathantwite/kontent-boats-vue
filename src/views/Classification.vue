@@ -42,6 +42,9 @@ export default {
             }
             const i = getRandomInt(0, this.dinghyClasses.length - 1);
             return this.dinghyClasses[i].image.value[0];
+        },
+        __lang: function() {
+            return this.$store.getters.GET_SELECTED_LANGUAGE;
         }
     },
     watch: {
@@ -50,6 +53,11 @@ export default {
                 return;
             }
             return this.$store.dispatch(Types.actions.LOAD_CLASSES_BY_CLASSIFICATION, this.classification.codename);
+        },
+        __lang: function() {
+            if (this.classification) {
+                return this.$store.dispatch(Types.actions.LOAD_CLASSES_BY_CLASSIFICATION, this.classification.codename);
+            }
         }
     },
     created() {
