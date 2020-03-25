@@ -42,6 +42,28 @@ export default {
         },
         __lang: function() {
             return this.$store.getters.GET_SELECTED_LANGUAGE;
+        },
+
+        seoTitle: function() {
+            if (!this.data) {
+                return '';
+            }
+            return this.data.seo_social__page_title.value ? this.data.seo_social__page_title.value : this.data.class_name.value;
+        },
+        seoDescription: function() {
+            if (!this.data) {
+                return '';
+            }
+            return this.data.seo_social__page_description.value ? this.data.seo_social__page_description.value : this.data.information.value;
+        },
+        seoImage: function() {
+            if (this.data && this.data.seo_social__shared_image.value[0]) {
+                return getOGImageUrl(this.data.seo_social__shared_image.value[0].url);
+            } else if (this.image) {
+                return getOGImageUrl(this.image.url);
+            } else {
+                return '';
+            }
         }
     },
     created() {
@@ -54,11 +76,12 @@ export default {
     },
     metaInfo() {
         return {
-            title: this.data ? this.data.class_name.value : '',
+            title: this.seoTitle ? this.seoTitle : '',
             meta: [
-                { vmid: 'description', name: 'description', content: this.data ? this.data.information.value : '' },
-                { vmid: 'og:title', name: 'og:title', content: this.data ? this.data.class_name.value : '' },
-                { vmid: 'og:image', name: 'og:image', content: this.image ? getOGImageUrl(this.image.url) : '' }
+                { vmid: 'description', name: 'description', content: this.seoDescription ? this.seoDescription : '' },
+                { vmid: 'og:description', name: 'og:description', content: this.seoDescription ? this.seoDescription : '' },
+                { vmid: 'og:title', name: 'og:title', content: this.seoTitle ? this.seoTitle : '' },
+                { vmid: 'og:image', name: 'og:image', content: this.seoImage ? this.seoImage : '' }
             ]
         };
     },
