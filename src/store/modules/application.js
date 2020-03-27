@@ -1,5 +1,4 @@
 export const siteDefaultLanguage = process.env.VUE_APP_DEFAULT_LANGUAGE;
-console.log(siteDefaultLanguage);
 
 export const Types = {
     getters: {
