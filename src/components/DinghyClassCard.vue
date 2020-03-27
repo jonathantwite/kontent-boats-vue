@@ -4,7 +4,7 @@
         <p>PY: {{data.py_number.value}}</p>
         <img :src="imageUrl" class="dinghy-image" />
         <p>{{data.design_type.value[0].name}}</p>
-        <router-link :to="{name: 'DinghyClass', params: {codename: data.system.codename}}" class="btn">{{data.class_name.value}}</router-link>
+        <router-link :to="{name: 'DinghyClass', params: {codename: data.system.codename, lang: $route.params.lang}}" class="btn">{{data.class_name.value}}</router-link>
         <a target="_blank" :href="data.association_website.value" class="association-link">{{data.association_name.value}}</a>
     </div>
 </template>

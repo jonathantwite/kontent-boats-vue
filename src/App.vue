@@ -32,6 +32,7 @@
 <script>
 /* eslint vue/no-unused-components: 0 */
 import CategoryMenu from '@/components/layout/CategoryMenu';
+import { Types } from '@/store';
 
 import '@/scss/global.scss';
 
@@ -40,13 +41,13 @@ export default {
     computed: {
         selectedLanguage: {
             get() {
-                return this.$store.getters.GET_SELECTED_LANGUAGE;
+                return this.$store.getters[Types.getters.GET_SELECTED_LANGUAGE];
             },
             set(value) {
-                this.$store.commit('SET_SELECTED_LANGUAGE', { language: value });
+                this.$router.push({ name: this.$route.name, params: { lang: value } });
             }
         },
-        availableLanguages: function() { return this.$store.getters.GET_AVAILABLE_LANGUAGES; }
+        availableLanguages: function() { return this.$store.getters[Types.getters.GET_AVAILABLE_LANGUAGES]; }
     },
     metaInfo() {
         return {

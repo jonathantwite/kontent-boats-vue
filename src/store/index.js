@@ -2,22 +2,25 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import classes, { Types as classesTypes } from './modules/classes';
 import classifications, { Types as classificationsTypes } from './modules/classifications';
-import application from './modules/application';
+import application, { Types as appTypes } from './modules/application';
 
 Vue.use(Vuex);
 
 export const Types = {
     getters: {
         ...classesTypes.getters,
-        ...classificationsTypes.getters
+        ...classificationsTypes.getters,
+        ...appTypes.getters
     },
     mutations: {
         ...classesTypes.mutations,
-        ...classificationsTypes.mutations
+        ...classificationsTypes.mutations,
+        ...appTypes.mutations
     },
     actions: {
         ...classesTypes.actions,
-        ...classificationsTypes.actions
+        ...classificationsTypes.actions,
+        ...appTypes.actions
     }
 };
 
