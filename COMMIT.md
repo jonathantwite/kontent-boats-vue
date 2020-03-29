@@ -32,6 +32,7 @@
 * Tests
 * Styling
 * Meta
+* Localisation
 
 ## Footer
 

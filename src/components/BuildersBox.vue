@@ -1,7 +1,7 @@
 <template>
     <aside class="builders-box">
         <header>
-            <h3>Builders</h3>
+            <h3 v-t="'Page.Class.Builders'"></h3>
         </header>
         <details v-for="builder in allBuilders" :key="builder.builder.system.codename">
             <summary>{{builder.builder.builder_name.value}} ({{builder.builder.location.value}})</summary>

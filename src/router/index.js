@@ -38,9 +38,9 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (!to.params.lang) {
-        store.commit(Types.mutations.SET_TO_DEFAULT_LANGUAGE);
+        store.dispatch(Types.actions.SET_TO_DEFAULT_LANGUAGE);
     }
-    store.commit(Types.mutations.SET_SELECTED_LANGUAGE, { language: to.params.lang });
+    store.dispatch(Types.actions.SET_SELECTED_LANGUAGE, { language: to.params.lang });
 
     next();
 });

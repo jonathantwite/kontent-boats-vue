@@ -20,7 +20,7 @@
             </div>
 
             <div class="language-selector">
-                <label for="lang-selector">Select Language:&nbsp;</label>
+                <label for="lang-selector">{{$t("Generic.SelectLanguage")}}&nbsp;</label>
                 <select name="lang-selector" id="lang-selector" v-model="selectedLanguage">
                     <option v-for="lang in availableLanguages" :value="lang.codename" :key="lang.codename">{{lang.name}}</option>
                 </select>
