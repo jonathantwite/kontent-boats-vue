@@ -31,6 +31,7 @@
 * Vuex
 * Tests
 * Styling
+* MarkUp
 * Meta
 * Localisation
 

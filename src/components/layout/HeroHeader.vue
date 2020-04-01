@@ -1,6 +1,6 @@
 <template>
     <header class="hero-image" :style="{ backgroundImage: 'url(' + imageUrl + ')' }">
-        <img v-if="hasFloatingImage" :src="floatingImageUrl" class="floating-image" />
+        <img v-if="hasFloatingImage" :src="floatingImageUrl" class="floating-image" :alt="floatingImage.description" />
         <h1>{{title}}</h1>
     </header>
 </template>
